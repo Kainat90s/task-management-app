@@ -11,6 +11,8 @@ class TaskSchema(BaseModel):
     # Task ki description
     description: str
     is_completed: bool=False
+    
+
 
 # Task response DTO/schema
 # class TaskResponseDTO(BaseModel):
@@ -31,3 +33,4 @@ class TaskSchema(BaseModel):
 #     # SQLAlchemy model ko response mein convert karne ke liye
 #     class Config:
 #         from_attributes = True
+

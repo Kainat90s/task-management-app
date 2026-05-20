@@ -9,5 +9,8 @@ class Settings(BaseSettings):
     )
 
     DB_CONNECTION: str
+    SECRET_KEY: str
+    ALGORITHM: str
+    EXP: int
 
 settings = Settings()

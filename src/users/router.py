@@ -6,7 +6,7 @@ from typing import List
 from sqlalchemy.orm import Session
 
 user_routes= APIRouter(prefix="/user")
-@user_routes.post("/create", status_code=status.HTTP_201_CREATED)  #for creation successfully
+@user_routes.post("/create",  status_code=status.HTTP_201_CREATED)  #for creation successfully
 def create_user(body:UserSchema, db=Depends(get_db)):
     return controller.create_user(body,db)
 

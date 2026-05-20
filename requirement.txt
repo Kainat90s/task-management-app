@@ -1,5 +1,7 @@
-pip install fastapi uvicorn
-pip install SQLAlchemy
-pip install pydantic_settings
-pip install "fastapi[standard]"
-pip install psycopg2-binary
+ fastapi uvicorn
+SQLAlchemy
+ pydantic_settings
+"fastapi[standard]"
+install psycopg2-binary
+pyjwt
+"pwdlib[argon2]"

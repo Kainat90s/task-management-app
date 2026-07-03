@@ -1,4 +1,4 @@
-from fastapi import APIRouter,Depends,status
+from fastapi import APIRouter,Depends,status, BackgroundTasks
 from src.users.dtos import UserSchema,UserSchemaResponse
 from src.users import controller
 from src.utils.db import get_db
@@ -7,8 +7,8 @@ from sqlalchemy.orm import Session
 
 user_routes= APIRouter(prefix="/user")
 @user_routes.post("/create",  status_code=status.HTTP_201_CREATED)  #for creation successfully
-def create_user(body:UserSchema, db=Depends(get_db)):
-    return controller.create_user(body,db)
+async def create_user(body:UserSchema, bg_task:BackgroundTasks ,db=Depends(get_db)):
+    return await controller.create_user(body,db,bg_task)
 
 @user_routes.get('/get_user',response_model=List[UserSchemaResponse],status_code=status.HTTP_200_OK)# for fetcching data successfully
 def get_user_data(db:Session=Depends(get_db)):
@@ -33,3 +33,10 @@ def user_update(
 def delete_user(user_id:int,db:Session=Depends(get_db)):
     # return controller.delete_user(user_id,db)
     return controller.delete_user(user_id,db)
+
+
+from src.users.dtos import UserSchema, UserSchemaResponse, UserLoginSchema
+
+@user_routes.post("/login", status_code=status.HTTP_200_OK)
+def user_login(body: UserLoginSchema, db: Session = Depends(get_db)):
+    return controller.user_login(body, db)
